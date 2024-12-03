@@ -1,5 +1,7 @@
 plugins {
     id("java")
+    id("org.springframework.boot") version "3.3.1" // Adicionando o plugin Spring Boot
+    id("io.spring.dependency-management") version "1.0.15.RELEASE" // Gerenciamento de dependências do Spring
 }
 
 group = "com.auth"
@@ -15,16 +17,20 @@ dependencies {
     implementation(project(":Domain"))
     implementation(project(":Application"))
 
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.3.1")
-    implementation("org.springframework.boot:spring-boot-starter-undertow:3.3.1")
-    implementation("org.springframework.boot:spring-boot-starter-web:3.3.1")
-    implementation("org.springframework.boot:spring-boot-starter-mail:3.3.1")
-    implementation ("org.springframework.boot:spring-boot-starter-security:3.3.1")
-    //implementation (group: 'org.springdoc', name: 'springdoc-openapi-starter-webmvc-ui', version: '2.6.0')
+    // Dependências do Spring Boot
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Não precisa da versão, o Spring gerencia
+    implementation("org.springframework.boot:spring-boot-starter-undertow")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+
+    // Dependências adicionais
     implementation("com.auth0:java-jwt:4.4.0")
-    implementation("org.postgresql:postgresql:42.7.3")
+    implementation("org.postgresql:postgresql:42.5.0")
+
+
 }
 
 tasks.test {
     useJUnitPlatform()
 }
+

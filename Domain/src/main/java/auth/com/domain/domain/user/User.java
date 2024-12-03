@@ -9,17 +9,20 @@ public class User extends AggregateRoot<UserID> {
 
     private final Email email;
     private final String password;
+    private final TypeUser typeUser;
 
-    private User(UserID userID, Email email, String password) {
+    private User(UserID userID, Email email, String password, TypeUser typeUser) {
         super(userID);
         this.email = email;
         this.password = password;
+        this.typeUser = typeUser;
     }
 
-    public static User newUser(final String email, final String password) {
+    public static User newUser(final String email, final String password, final int typeId) {
         final var userId = UserID.unique();
         final var anEmail = Email.newEmail(email);
-        return new User(userId, anEmail, password);
+        final var aTypeUser = new TypeUser(typeId);
+        return new User(userId, anEmail, password, aTypeUser);
     }
 
     public void validate(ValidationHandler handler) {
@@ -34,8 +37,12 @@ public class User extends AggregateRoot<UserID> {
         return password;
     }
 
-    public static User with(final UserID userId, final String anEmail, final String aPassword) {
-        return new User(userId, Email.newEmail(anEmail), aPassword);
+    public TypeUser getTypeUser() {
+        return typeUser;
+    }
+
+    public static User with(final UserID userId, final String anEmail, final String aPassword, final int typeId) {
+        return new User(userId, Email.newEmail(anEmail), aPassword, new TypeUser(typeId));
     }
 
     @Override
@@ -43,11 +50,20 @@ public class User extends AggregateRoot<UserID> {
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         User user = (User) o;
-        return Objects.equals(email, user.email) && Objects.equals(password, user.password);
+        return Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(typeUser, user.typeUser);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), email, password);
+        return Objects.hash(super.hashCode(), email, password, typeUser);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", typeUser='" + typeUser.getName() + '\'' +
+                '}';
     }
 }

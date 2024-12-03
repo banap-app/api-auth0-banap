@@ -23,6 +23,7 @@ public class WebServerSecurityConfig {
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
                                 .requestMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/auth/verify").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();

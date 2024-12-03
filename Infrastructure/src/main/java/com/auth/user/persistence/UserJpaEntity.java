@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.UUID;
 
 @Entity(name="User")
-@Table(name="Users")
+@Table(name="users")
 public class UserJpaEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -20,20 +20,25 @@ public class UserJpaEntity implements Serializable {
     private String email;
 
     @Column(nullable = false)
-    private String password;
+    private String password_user;
+
+    @ManyToOne
+    @JoinColumn(name = "type_user_id", nullable = false)
+    private TypeUserJpaEntity typeUser;
 
     // Construtor padrão (necessário para o JPA)
     public UserJpaEntity() {
     }
 
     // Construtor para inicialização
-    public UserJpaEntity(String email, String password) {
+    public UserJpaEntity(String email, String password_user, TypeUserJpaEntity typeUser) {
         this.email = email;
-        this.password = password;
+        this.password_user = password_user;
+        this.typeUser = typeUser;
     }
 
     public User toDomain() {
-        return User.with(UserID.from(getId().toString()), getEmail(), getPassword());
+        return User.with(UserID.from(getId().toString()), getEmail(), getPassword(), typeUser.getId());
     }
 
     // Getters e Setters
@@ -46,11 +51,11 @@ public class UserJpaEntity implements Serializable {
     }
 
     public String getPassword() {
-        return password;
+        return password_user;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassword(String password_user) {
+        this.password_user = password_user;
     }
 
     public UUID getId() {
@@ -61,11 +66,20 @@ public class UserJpaEntity implements Serializable {
         this.id = id;
     }
 
+    public TypeUserJpaEntity getTypeUser() {
+        return typeUser;
+    }
+
+    public void setTypeUser(TypeUserJpaEntity typeUser) {
+        this.typeUser = typeUser;
+    }
+
     @Override
     public String toString() {
         return "UserJpaEntity{" +
                 "email='" + email + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + password_user + '\'' +
+                ", typeUser='" + typeUser.getTypeName() + '\'' +
                 '}';
     }
 }

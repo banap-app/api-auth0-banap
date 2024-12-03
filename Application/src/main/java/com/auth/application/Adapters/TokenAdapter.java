@@ -8,6 +8,7 @@ public interface TokenAdapter {
 
     String generateToken(User userAuth, Instant issuedAt, Instant expiresAt);
 
+    Boolean verifyToken(String token);
 
     String getSubject(String token);
 }
