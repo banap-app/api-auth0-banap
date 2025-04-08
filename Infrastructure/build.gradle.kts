@@ -18,6 +18,9 @@ dependencies {
     implementation(project(":Application"))
 
     // Dependências do Spring Boot
+
+    implementation ("software.amazon.awssdk:secretsmanager:2.20.0")
+    implementation ("software.amazon.awssdk:regions:2.20.0")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Não precisa da versão, o Spring gerencia
     implementation("org.springframework.boot:spring-boot-starter-undertow")
     implementation("org.springframework.boot:spring-boot-starter-web")

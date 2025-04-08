@@ -18,7 +18,7 @@ public interface ValidationHandler {
 
     default Error firstError() {
         if (hasErrors()) {
-            return getErrors().get(0);
+            return getErrors().getFirst();
         } else {
             return null;
         }

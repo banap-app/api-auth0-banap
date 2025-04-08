@@ -2,4 +2,4 @@ postgres:
   username: postgres
   password: admin
   schema: banap_database
-  url: 192.168.56.1:5432
+  url: 127.0.0.1:5432

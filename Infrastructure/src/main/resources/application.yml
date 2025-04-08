@@ -7,9 +7,9 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://${postgres.url}/${postgres.schema}?characterEncoding=UTF-8
-    username: ${postgres.username}
-    password: ${postgres.password}
+    url: jdbc:postgresql://localhost:5432/banap_database?characterEncoding=UTF-8
+    username: postgres
+    password: admin
     hikari:
       auto-commit: false
       connection-timeout: 500
@@ -22,10 +22,16 @@ spring:
     open-in-view: false
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     properties:
       "[hibernate.dialect]": org.hibernate.dialect.PostgreSQLDialect
       "[hibernate.generate_statistics]": true
       "[hibernate.connection.provider_disables_autocommit]": true
 jwt:
   secret: mysecret
+
+secretmanager:
+  accessKey: AKIAUFPUXLSEEXAHJ5PA
+  secretKey: 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
+  tokenSecret: prod/banap/auth_secret
+  region: sa-east-1

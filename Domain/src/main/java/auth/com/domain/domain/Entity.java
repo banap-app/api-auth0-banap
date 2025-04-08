@@ -1,5 +1,7 @@
 package auth.com.domain.domain;
 
+import auth.com.domain.domain.validation.ValidationHandler;
+
 import java.util.Objects;
 
 public abstract class Entity<ID extends Identifier> {
@@ -9,6 +11,8 @@ public abstract class Entity<ID extends Identifier> {
     }
 
     public ID getId() { return id; }
+
+    protected abstract void validate(ValidationHandler aHandler);
 
     @Override
     public boolean equals(final Object o) {

@@ -22,7 +22,7 @@ public class WebServerSecurityConfig {
                         sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorizeRequests ->
                         authorizeRequests
-                                .requestMatchers(HttpMethod.POST, "/api/auth").permitAll()
+                                .requestMatchers(HttpMethod.POST, "/api/auth/user/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/auth/verify").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());

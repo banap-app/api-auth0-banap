@@ -1,6 +1,5 @@
 package com.auth.user;
 
-import auth.com.domain.domain.user.Email;
 import auth.com.domain.domain.user.User;
 import auth.com.domain.domain.user.UserGateway;
 import com.auth.user.persistence.UserJpaEntity;
@@ -17,7 +16,7 @@ public class UserPostgresGateway implements UserGateway {
         this.userRepository = userRepository;
     }
     @Override
-    public Optional<User> findByEmail(Email email) {
-        return this.userRepository.findByEmail(email.getValue()).map(UserJpaEntity::toDomain);
+    public Optional<User> findByEmail(String email) {
+        return this.userRepository.findByEmail(email).map(UserJpaEntity::toDomain);
     }
 }

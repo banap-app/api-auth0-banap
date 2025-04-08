@@ -23,7 +23,7 @@ public class UseCasesConfig {
     }
 
     @Bean
-    public GenerateTokenUseCase generateTokenUseCase() {
+    public DefaultGenerateTokenUseCase generateTokenUseCase() {
         return new DefaultGenerateTokenUseCase(userPostgresGateway,cryptoService, tokenService);
     }
 

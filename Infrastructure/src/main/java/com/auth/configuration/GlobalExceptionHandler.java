@@ -11,10 +11,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DataAccessException.class)
     public ResponseEntity<String> handleDataAccessException(DataAccessException ex) {
-        // Log the exception (optional)
-        // Logger.error("Database connection error", ex);
-
-        // Return a custom error response
         return new ResponseEntity<>("Database connection error: " + ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 

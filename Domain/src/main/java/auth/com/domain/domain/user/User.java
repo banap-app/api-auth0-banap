@@ -7,11 +7,11 @@ import java.util.Objects;
 
 public class User extends AggregateRoot<UserID> {
 
-    private final Email email;
+    private final String email;
     private final String password;
     private final TypeUser typeUser;
 
-    private User(UserID userID, Email email, String password, TypeUser typeUser) {
+    private User(UserID userID, String email, String password, TypeUser typeUser) {
         super(userID);
         this.email = email;
         this.password = password;
@@ -20,16 +20,15 @@ public class User extends AggregateRoot<UserID> {
 
     public static User newUser(final String email, final String password, final int typeId) {
         final var userId = UserID.unique();
-        final var anEmail = Email.newEmail(email);
         final var aTypeUser = new TypeUser(typeId);
-        return new User(userId, anEmail, password, aTypeUser);
+        return new User(userId, email, password, aTypeUser);
     }
 
     public void validate(ValidationHandler handler) {
-        this.email.validate(handler);
+        new UserValidator(handler, this).validate();
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -42,7 +41,7 @@ public class User extends AggregateRoot<UserID> {
     }
 
     public static User with(final UserID userId, final String anEmail, final String aPassword, final int typeId) {
-        return new User(userId, Email.newEmail(anEmail), aPassword, new TypeUser(typeId));
+        return new User(userId, anEmail, aPassword, new TypeUser(typeId));
     }
 
     @Override

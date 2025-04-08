@@ -25,14 +25,3 @@ tasks.test {
     useJUnitPlatform()
 }
 
-tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
-    archiveBaseName.set("auth-lambda-function")
-    archiveVersion.set("1.0")
-    mainClass.set("com.auth.SampleApplication")
-    from(sourceSets.main.get().output)
-    dependsOn(configurations.runtimeClasspath)
-    from({
-        configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
-    })
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-}

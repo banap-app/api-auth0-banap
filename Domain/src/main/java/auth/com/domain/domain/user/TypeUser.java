@@ -12,6 +12,7 @@ public class TypeUser {
     private static final Map<Integer, String> validTypes = new HashMap<>();
 
     static {
+        validTypes.put(0, "NULL");
         validTypes.put(1, "Engineer");
         validTypes.put(2, "Productor");
     }
