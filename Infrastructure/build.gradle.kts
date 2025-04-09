@@ -11,14 +11,17 @@ repositories {
     mavenCentral()
 }
 
+
+
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation(project(":Domain"))
     implementation(project(":Application"))
 
-    // Dependências do Spring Boot
+    implementation("org.postgresql:postgresql:42.6.0")
 
+    // Dependências do Spring Boot
     implementation ("software.amazon.awssdk:secretsmanager:2.20.0")
     implementation ("software.amazon.awssdk:regions:2.20.0")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Não precisa da versão, o Spring gerencia

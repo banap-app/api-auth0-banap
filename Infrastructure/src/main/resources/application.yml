@@ -18,6 +18,7 @@ spring:
       minimum-idle: 10
       pool-name: master
 
+
   jpa:
     open-in-view: false
     show-sql: true
@@ -35,3 +36,4 @@ secretmanager:
   secretKey: eFTGJYWRPxYvOXmkMWo3+jK1sHefCEs/B/t9wXvC
   tokenSecret: prod/banap/auth_secret
   region: sa-east-1
+
