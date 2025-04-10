@@ -15,7 +15,7 @@ public class UserValidator extends Validator {
     }
     @Override
     public void validate() {
-
+        checkEmail();
     }
 
     private void checkEmail() {
