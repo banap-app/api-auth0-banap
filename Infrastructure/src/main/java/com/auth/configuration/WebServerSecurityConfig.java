@@ -24,6 +24,10 @@ public class WebServerSecurityConfig {
                         authorizeRequests
                                 .requestMatchers(HttpMethod.POST, "/api/auth/user/login").permitAll()
                                 .requestMatchers(HttpMethod.POST, "/api/auth/verify").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/swagger-ui/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/v3/api-docs/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/swagger-resources/**").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/webjars/**").permitAll()
                                 .anyRequest().authenticated())
                 .httpBasic(Customizer.withDefaults());
         return http.build();

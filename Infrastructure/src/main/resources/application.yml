@@ -6,6 +6,9 @@ server:
     min-response-size: 1024
 
 spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
   datasource:
     url: jdbc:postgresql://localhost:5432/banap_database?characterEncoding=UTF-8
     username: postgres

@@ -26,9 +26,10 @@ dependencies {
     implementation ("software.amazon.awssdk:regions:2.20.0")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa") // Não precisa da versão, o Spring gerencia
     implementation("org.springframework.boot:spring-boot-starter-undertow")
+    implementation ("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0")
+    implementation ("javax.servlet:javax.servlet-api:4.0.1")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-security")
-
     // Dependências adicionais
     implementation("com.auth0:java-jwt:4.4.0")
     implementation("org.postgresql:postgresql:42.5.0")

@@ -1,12 +1,11 @@
 package com.auth.api.controllers;
 
-import auth.com.domain.domain.exceptions.DomainException;
 import auth.com.domain.domain.validation.handler.Notification;
 import com.auth.application.Result;
 import com.auth.application.userAuth.generateToken.DefaultGenerateTokenUseCase;
 import com.auth.application.userAuth.generateToken.GenerateTokenCommand;
 import com.auth.application.userAuth.generateToken.GenerateTokenOutput;
-import com.auth.application.userAuth.generateToken.GenerateTokenUseCase;
+import com.auth.swagger.generate_token.GenerateTokenControllerInterface;
 import com.auth.user.models.generateTokenApiInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +22,7 @@ import java.util.Objects;
 @RequestMapping(
  "/api/auth/user"
 )
-public class GenerateTokenController {
+public class GenerateTokenController implements GenerateTokenControllerInterface {
     private DefaultGenerateTokenUseCase generateTokenUseCase;
 
     public GenerateTokenController(final DefaultGenerateTokenUseCase generateTokenUseCase) {
@@ -53,6 +52,8 @@ public class GenerateTokenController {
             return ResponseEntity.status(500).body(new Result<>(null, Notification.create(new Error("Erro interno do servidor: " + e.getMessage()))));
         }
     }
+
+
 }
 
 
