@@ -56,7 +56,7 @@ public class DefaultGenerateTokenUseCase extends GenerateTokenUseCase{
 
            Instant issueAt = Instant.now();
 
-           Instant expiresAt = issueAt.plusSeconds(2700);
+           Instant expiresAt = issueAt.plusSeconds(172800);
 
            String token = this.tokenAdapter.generateToken(userPersistence, issueAt, expiresAt);
 
