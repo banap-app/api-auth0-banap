@@ -35,8 +35,6 @@ jwt:
   secret: mysecret
 
 secretmanager:
-  accessKey: AKIAUFPUXLSEEXAHJ5PA
-  secretKey: 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
   tokenSecret: prod/banap/auth_secret
   region: sa-east-1
 
